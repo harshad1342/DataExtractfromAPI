@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Search Result</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+  <h1>Facebook Search Result for "{{ query }}"</h1>
+  <div id="posts"></div>
+</div>
+
+<script>
+  window.onload = function() {
+    var query = "{{ query }}";
+    var duration = 7776000; // 3 months in seconds
+    // Make AJAX request to get posts from Flask server
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/get_posts", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = JSON.parse(xhr.responseText);
+        document.getElementById('posts').innerHTML = response.posts;
+      }
+    };
+    xhr.send("query=" + query + "&duration=" + duration);
+  };
+</script>
+
+</body>
+</html>

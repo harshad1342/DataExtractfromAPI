@@ -8,32 +8,41 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body style="background-color: black">
+    <form id="searchForm" method="POST" action="/facebook_search"></form>
     <div class="container">
-        <div class="container1">
-            <div class="search_container">
-                <p class="search_title">
-                    Go ahead, hover over search
-                </p>
-                <input class="search_input" type="text" placeholder="Search">
+        <form id="searchForm">
+            <div class="container1">
+                <div class="search_container">
+                    <p class="search_title">
+                        Go ahead, hover over search
+                    </p>
+                    <input class="search_input" id="searchInput" type="text" placeholder="Search">
+                </div>
+                <div class="buttonsdata">
+                    <a href="https://www.facebook.com/login/" style="margin-left: 30px;;"  target="_blank">
+                        <button type="submit" class="btn btn-primary" id="searchButtonFacebook">Facebook</button>
+                    </a>
+                    <a href="https://www.google.com/" style="margin-left:30%; margin-right: 30%">
+                        <button type="submit" class="btn btn-light">Google</button>
+                    </a>
+                    <a href="https://twitter.com/">
+                        <button type="submit" class="btn btn-dark">Twitter</button>
+                    </a>
+                </div>
+                <div style="margin-left: 300px; margin-top: 30px;">
+                    <h6> Select Date Range: 
+                        <select class="btn btn-light" id="durationSelect">
+                            {% for i in data %}
+                                <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                          </select>
+                    </h6>
+                </div>
             </div>
-            <div class="buttonsdata">
-                <a href="https://www.facebook.com/login/" style="margin-left: 30px;;" target=”_blank”><button type="submit" class="btn btn-primary">Facebook</button></a>
-                <a href="https://www.google.com/" style="margin-left:30%; margin-right: 30%" target=”_blank”><button type="submit" class="btn btn-light">Google</button></a>
-                <a href="https://twitter.com/"><button type="submit" class="btn btn-dark" target=”_blank”>Twitter</button></a>
-            </div>
-            <div style="margin-left: 300px; margin-top: 30px;">
-                <h6> Select Date Range: 
-                    <select class="btn btn-light">
-                        {% for i in data %}
-                            <option value="{{i}}">{{i}}</option>
-                        {% endfor %}
-                      </select>
-                </h6>
-            </div>
-            
-        </div>
+        </form>
     </div>
+    <script src="{{url_for('static', filename='js/home.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   </body>
 </html>
